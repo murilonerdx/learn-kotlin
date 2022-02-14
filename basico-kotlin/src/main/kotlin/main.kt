@@ -1,13 +1,41 @@
 
 
 class Conta{
-    var titular: String = "Murilo"
-    var numeroConta: Int = 1000
-    var saldo: Double = -1.0
-    var contaAtiva: Boolean = true
+    private var titular: String = "Murilo"
+    private var numeroConta: Int = 1000
+    private var saldo: Double = -1.0
+    private var contaAtiva: Boolean = true
 
     override fun toString(): String {
         return "Conta(titular='$titular', numeroConta=$numeroConta, saldo=$saldo, contaAtiva=$contaAtiva)"
+    }
+
+    fun getTitular(): String{
+        return titular
+    }
+
+    fun getNumeroConta(): Int{
+        return numeroConta
+    }
+
+    fun getSaldo(): Double{
+        return saldo
+    }
+
+    fun getContaAtiva(): Boolean{
+        return contaAtiva
+    }
+
+    fun setNumeroConta(numeroConta: Int){
+        this.numeroConta = numeroConta
+    }
+
+    fun setSaldo(saldo: Double){
+        this.saldo = saldo
+    }
+
+    fun setTitular(titular: String){
+        this.titular = titular
     }
 
 }
@@ -37,10 +65,10 @@ fun main() {
     //Existem tipos para atribuir
     val conta = Conta()
 
-    conta.numeroConta = 2000
-    println("Titular: " + conta.titular)
-    println("Numero da conta: " + conta.numeroConta)
-    println("Saldo: " + conta.saldo)
+    conta.setNumeroConta(2000)
+    println("Titular: " + conta.getTitular())
+    println("Numero da conta: " + conta.getNumeroConta())
+    println("Saldo: " + conta.getSaldo())
 
 
     /**
@@ -78,40 +106,40 @@ fun main() {
 //    }while(i < 5)
 
     val contaAlex = Conta()
-    contaAlex.titular = "Alex"
-    contaAlex.numeroConta = 1000
-    contaAlex.saldo = 200.0
+    contaAlex.setTitular("Alex")
+    contaAlex.setNumeroConta(1000)
+    contaAlex.setSaldo(200.0)
 
 
     val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numeroConta = 1001
-    contaFran.saldo = 300.0
+    contaFran.setTitular("Fran")
+    contaFran.setNumeroConta(1010)
+    contaFran.setSaldo(300.0)
 
-    println(contaFran.titular)
-    println(contaFran.numeroConta)
-    println(contaFran.saldo)
+    println(contaFran.getTitular())
+    println(contaFran.getNumeroConta())
+    println(contaFran.getSaldo())
 
-    println(contaAlex.titular)
-    println(contaAlex.numeroConta)
-    println(contaAlex.saldo)
+    println(contaAlex.getTitular())
+    println(contaAlex.getNumeroConta())
+    println(contaAlex.getSaldo())
 
     println("depositando na conta do Alex")
     deposita(contaAlex, 50.0)
-    println(contaAlex.saldo)
+    println(contaAlex.getSaldo())
 
     println("depositando na conta da Fran")
     deposita(contaFran, 70.0)
-    println(contaFran.saldo)
+    println(contaFran.getSaldo())
 }
 
 
 fun testaCondicoes(conta: Conta) {
     when {
-        conta.contaAtiva && conta.saldo >= 0.0 -> {
+        conta.getContaAtiva() && conta.getSaldo() >= 0.0 -> {
             println("A conta está ativa")
         }
-        conta.saldo <= 0.0 -> {
+        conta.getSaldo() <= 0.0 -> {
             println("A conta está negativa")
         }
         else -> {
@@ -136,7 +164,7 @@ fun indicador() {
 }
 
 fun deposita(conta: Conta, valor: Double){
-    conta.saldo += valor
+    conta.setSaldo(conta.getSaldo() + valor)
 }
 
 fun testaCopiasEReferencias(){
@@ -148,13 +176,13 @@ fun testaCopiasEReferencias(){
     println("numeroY $numeroY")
 
     val contaJoao = Conta()
-    contaJoao.titular = "João"
+    contaJoao.setTitular("João")
     var contaMaria = Conta()
-    contaMaria.titular = "Maria"
-    contaJoao.titular = "João"
+    contaMaria.setTitular("Maria")
+    contaJoao.setTitular("João")
 
-    println("titutar conta joao: ${contaJoao.titular}")
-    println("titutar conta maria: ${contaMaria.titular}")
+    println("titutar conta joao: ${contaJoao.getTitular()}")
+    println("titutar conta maria: ${contaMaria.getTitular()}")
 
     println(contaJoao)
     println(contaMaria)
